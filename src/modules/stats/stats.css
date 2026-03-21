@@ -1,0 +1,275 @@
+/**
+ * 📊 stats.css
+ * Стили для статистики
+ */
+
+.stats-container {
+  padding: 0 0 20px 0;
+}
+
+/* Заголовок с кнопкой назад */
+.header-with-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+  position: relative;
+  width: 100%;
+}
+
+.back-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--mint-soft);
+  color: var(--green);
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.back-btn:hover {
+  background: var(--mint);
+  color: white;
+}
+
+.header-with-back h2 {
+  color: var(--green);
+  font-size: 28px;
+  letter-spacing: 0.5px;
+  margin: 0;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Профиль мини */
+.stats-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: #57bda4;
+  border-radius: 40px;
+  padding: 15px 25px;
+  margin: 0 auto 25px auto;
+  max-width: 280px;
+  width: fit-content;
+  box-shadow: var(--shadow);
+  color: white;
+}
+
+.stats-profile-icon {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.stats-user-info h3 {
+  font-size: 26px;
+  color: white;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.stats-user-info p {
+  font-size: 18px;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.5;
+}
+
+/* Заголовки секций */
+.section-title {
+  font-size: 24px;
+  color: var(--green);
+  margin: 30px 0 18px;
+  font-weight: 600;
+}
+
+/* Статистика по категориям */
+.stats-category {
+  background: #57bda4;
+  border-radius: 20px;
+  padding: 18px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow);
+  color: white;
+}
+
+.stats-category.dark {
+  background: var(--green);
+}
+
+.category-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  font-size: 22px;
+  font-weight: 600;
+  color: white;
+}
+
+.category-header strong {
+  font-size: 22px;
+}
+
+.cat-icon-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-right: 15px;
+  vertical-align: middle;
+}
+
+.progress-bar {
+  height: 6px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.progress-fill {
+  height: 100%;
+  background: white;
+  border-radius: 3px;
+  transition: width 0.3s;
+}
+
+.category-percent {
+  text-align: right;
+  font-size: 20px;
+  color: rgba(255,255,255,0.8);
+  font-weight: 600;
+}
+
+/* Достижения */
+.achievements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 30px;
+}
+
+.achievement-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 18px;
+  background: #57bda4;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  color: white;
+  transition: transform 0.2s;
+}
+
+.achievement-card:nth-child(even) {
+  background: var(--green);
+}
+
+.achievement-card.earned {
+  border-left: 4px solid #ffffff;
+}
+
+.achievement-card.locked {
+  opacity: 0.8;
+}
+
+.achievement-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.achievement-content {
+  flex: 1;
+}
+
+.achievement-content h4 {
+  font-size: 20px;
+  margin-bottom: 6px;
+  color: white;
+  font-weight: 600;
+}
+
+.achievement-content p {
+  font-size: 16px;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 6px;
+}
+
+.achievement-content small {
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
+}
+
+.earned-badge {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Таблица лидеров - простой текст */
+.leaderboard-simple {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 15px 0 30px;
+  padding: 0 5px;
+}
+
+.leader-simple-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(97, 205, 179, 0.3);
+  font-size: 18px;
+}
+
+.leader-simple-item:last-child {
+  border-bottom: none;
+}
+
+.leader-simple-item.current-user {
+  font-weight: 700;
+  color: var(--green);
+}
+
+.leader-simple-place {
+  width: 40px;
+  color: #61cdb3;
+  font-weight: 600;
+}
+
+.leader-simple-name {
+  flex: 1;
+  color: #61cdb3;
+}
+
+.leader-simple-points {
+  color: #61cdb3;
+  font-weight: 600;
+}
+
+.leader-simple-item.current-user .leader-simple-place,
+.leader-simple-item.current-user .leader-simple-name,
+.leader-simple-item.current-user .leader-simple-points {
+  color: var(--green);
+  font-weight: 700;
+}

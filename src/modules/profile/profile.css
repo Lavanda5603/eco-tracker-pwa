@@ -1,0 +1,354 @@
+/**
+ * 👤 profile.css
+ * Стили для профиля
+ */
+
+.profile-container {
+  padding: 0 0 20px 0;
+}
+
+/* Заголовок с кнопкой назад - как везде */
+.header-with-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+  position: relative;
+  width: 100%;
+}
+
+.back-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--mint-soft);
+  color: var(--green);
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.back-btn:hover {
+  background: var(--mint);
+  color: white;
+}
+
+.header-with-back h2 {
+  color: var(--green);
+  font-size: 28px;
+  letter-spacing: 0.5px;
+  margin: 0;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Аватар */
+.profile-avatar-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.profile-avatar-large {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--mint), var(--green));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 12px;
+  border: 3px solid white;
+  box-shadow: var(--shadow);
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-placeholder-large {
+  font-size: 42px;
+  color: white;
+}
+
+.edit-avatar-btn {
+  background: none;
+  border: 2px solid var(--mint);
+  color: var(--green);
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: all 0.2s;
+}
+
+.edit-avatar-btn:hover {
+  background: var(--mint);
+  color: white;
+}
+
+.profile-name-large {
+  font-size: 26px;
+  color: var(--green);
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.profile-join-date {
+  color: #666;
+  font-size: 14px;
+}
+
+/* Заголовки секций */
+.section-title {
+  font-size: 22px;
+  color: var(--green);
+  margin: 25px 0 15px;
+  font-weight: 600;
+}
+
+/* Мои данные */
+.data-card {
+  background: var(--green);
+  border-radius: 24px;
+  padding: 18px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+  color: white;
+}
+
+.data-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.data-item:last-child {
+  border-bottom: none;
+}
+
+.data-icon {
+  font-size: 22px;
+  min-width: 35px;
+  text-align: center;
+  color: white;
+}
+
+.data-input {
+  flex: 1;
+  padding: 8px 0;
+  border: none;
+  font-size: 18px;
+  color: white;
+  background: transparent;
+}
+
+.data-input:focus {
+  outline: none;
+}
+
+.data-input::placeholder {
+  color: rgba(255,255,255,0.6);
+}
+
+/* Настройки */
+.settings-card {
+  background: #57bda4;
+  border-radius: 24px;
+  padding: 10px 18px;
+  margin-bottom: 25px;
+  box-shadow: var(--shadow);
+  color: white;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  font-size: 18px;
+}
+
+.setting-item:last-child {
+  border-bottom: none;
+}
+
+.setting-icon {
+  margin-right: 12px;
+  font-size: 20px;
+}
+
+/* Стили для переключателя */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 52px;
+  height: 26px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255,255,255,0.3);
+  transition: .3s;
+  border-radius: 26px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .3s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--green);
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Кнопка сохранения */
+.save-profile-btn {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, var(--mint), var(--green));
+  color: white;
+  border: none;
+  border-radius: 40px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: all 0.2s;
+  box-shadow: var(--shadow);
+}
+
+.save-profile-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 20px rgba(12, 72, 60, 0.3);
+}
+
+/* Меню */
+.menu-item {
+  width: 100%;
+  padding: 18px 22px;
+  margin-bottom: 12px;
+  border-radius: 24px;
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: var(--shadow);
+}
+
+.menu-item:nth-child(odd) {
+  background: #57bda4;
+  color: white;
+}
+
+.menu-item:nth-child(even) {
+  background: var(--green);
+  color: white;
+}
+
+.menu-item:hover {
+  transform: translateX(5px);
+}
+
+.menu-icon {
+  margin-right: 15px;
+  font-size: 22px;
+}
+
+/* Стили для иконок */
+.setting-item img {
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.setting-item span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.setting-item img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.data-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.data-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 35px;
+}
+
+.data-icon img {
+  display: block;
+}
+
+/* Темная тема */
+body.dark-theme {
+  background: #1a1a1a;
+}
+
+body.dark-theme .app-container {
+  background: #2d2d2d;
+}
+
+body.dark-theme .profile-avatar-large {
+  border-color: #555;
+}
+
+body.dark-theme .data-card,
+body.dark-theme .settings-card {
+  border: 1px solid #555;
+}

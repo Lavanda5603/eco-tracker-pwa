@@ -1,1 +1,298 @@
-  
+/**
+ * 🗑️ wasteSort.css
+ * Стили для сортировки (как на главной)
+ */
+
+.waste-container {
+  padding: 0 0 20px 0;
+}
+
+/* Заголовок с кнопкой назад - по центру */
+.header-with-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+  position: relative;
+  width: 100%;
+}
+
+.back-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--mint-soft);
+  color: var(--green);
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.back-btn:hover {
+  background: var(--mint);
+  color: white;
+}
+
+.header-with-back h2 {
+  color: var(--green);
+  font-size: 28px;
+  letter-spacing: 0.5px;
+  margin: 0;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Поиск */
+.search-section {
+  margin-bottom: 25px;
+}
+
+.search-label {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--green);
+  margin-bottom: 10px;
+  line-height: 1;
+}
+
+.search-input {
+  width: 100%;
+  height: 52px;
+  border-radius: 20px;
+  background: #e8f0e5;
+  padding: 0 18px;
+  font-size: 18px;
+  border: 2px solid transparent;
+  transition: all 0.2s;
+  color: var(--text);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--mint);
+  background: white;
+  box-shadow: 0 0 0 3px rgba(97, 205, 179, 0.2);
+}
+
+.search-input::placeholder {
+  color: #999;
+}
+
+/* Заголовки секций */
+.section-title {
+  font-size: 22px;
+  color: var(--green);
+  margin: 25px 0 15px;
+  font-weight: 600;
+}
+
+/* Сетка категорий */
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.category-card {
+  background: #57bda4;
+  border-radius: 20px;
+  padding: 16px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: var(--shadow);
+  min-height: 100px;
+}
+
+.category-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px rgba(12, 72, 60, 0.25);
+}
+
+.category-icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.category-name {
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Результаты поиска - чередование цветов */
+.results-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.result-item {
+  display: flex;
+  gap: 16px;
+  padding: 18px;
+  background: #57bda4;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  color: white;
+  transition: transform 0.2s;
+}
+
+.result-item:hover {
+  transform: translateY(-2px);
+}
+
+.result-item:nth-child(even) {
+  background: var(--green);
+}
+
+.result-icon {
+  font-size: 36px;
+  min-width: 60px;
+  text-align: center;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+.result-content {
+  flex: 1;
+}
+
+.result-content h4 {
+  font-size: 20px;
+  margin-bottom: 6px;
+  color: white;
+  font-weight: 600;
+}
+
+.result-content p {
+  font-size: 15px;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.result-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.details-link {
+  color: rgba(255,255,255,0.8);
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.details-link:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.done-btn {
+  padding: 8px 16px;
+  background: white;
+  color: var(--green);
+  border: none;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.done-btn:hover {
+  background: #f0f0f0;
+  transform: scale(1.05);
+}
+
+.done-btn:disabled {
+  background: #4CAF50;
+  color: white;
+  cursor: default;
+  opacity: 0.8;
+}
+
+/* Модальное окно */
+.detail-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border-radius: 24px;
+  padding: 24px;
+  max-width: 320px;
+  width: 90%;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  z-index: 1000;
+  border: 3px solid var(--mint);
+}
+
+.detail-modal h3 {
+  color: var(--green);
+  font-size: 24px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.detail-modal p {
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 8px 0;
+}
+
+.detail-modal .modal-close {
+  background: var(--mint);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.2s;
+  margin-top: 16px;
+}
+
+.detail-modal .modal-close:hover {
+  background: var(--green);
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 999;
+}
+
+.no-results {
+  text-align: center;
+  color: #999;
+  padding: 40px;
+  font-size: 18px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+}

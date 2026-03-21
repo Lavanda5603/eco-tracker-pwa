@@ -1,1 +1,234 @@
-  
+/**
+ * 🗺️ recyclingMap.css
+ * Стили для карты (как на главной)
+ */
+
+.map-container {
+  padding: 0 0 20px 0;
+}
+
+/* Заголовок с кнопкой назад - по центру */
+.header-with-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+  position: relative;
+  width: 100%;
+}
+
+.back-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--mint-soft);
+  color: var(--green);
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.back-btn:hover {
+  background: var(--mint);
+  color: white;
+}
+
+.header-with-back h2 {
+  color: var(--green);
+  font-size: 28px;
+  letter-spacing: 0.5px;
+  margin: 0;
+  font-weight: 600;
+  text-align: center;
+}
+
+.location-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 15px;
+  justify-content: flex-start;
+  padding-left: 5px;
+}
+
+.location-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.location-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.location-text {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--green);
+}
+
+.nearby-btn {
+  width: 100%;
+  height: 52px;
+  border-radius: 30px;
+  background: linear-gradient(135deg, var(--mint), var(--green));
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: var(--shadow);
+}
+
+.nearby-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 20px rgba(12, 72, 60, 0.3);
+}
+
+.map-placeholder {
+  width: 100%;
+  height: 250px;
+  background: #e8f0e5;
+  border-radius: 24px;
+  margin-bottom: 25px;
+  overflow: hidden;
+  position: relative;
+  border: 2px solid var(--mint);
+  box-shadow: var(--shadow);
+}
+
+.map-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--green);
+  font-size: 18px;
+}
+
+/* Заголовки секций */
+.section-title {
+  font-size: 22px;
+  color: var(--green);
+  margin: 25px 0 15px;
+  font-weight: 600;
+}
+
+/* Список пунктов - чередование цветов */
+.points-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.point-card {
+  background: #57bda4;
+  border-radius: 20px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+  color: white;
+  transition: transform 0.2s;
+}
+
+.point-card:nth-child(even) {
+  background: var(--green);
+}
+
+.point-card:hover {
+  transform: translateY(-2px);
+}
+
+.point-card.near {
+  border: 2px solid #ffffff;
+}
+
+.point-card h4 {
+  font-size: 20px;
+  margin-bottom: 6px;
+  color: white;
+  font-weight: 600;
+}
+
+.point-address {
+  font-size: 15px;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 12px;
+}
+
+.point-materials {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.material-icon-text {
+  background: rgba(255,255,255,0.2);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  color: white;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.material-icon-text img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.point-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  border-top: 1px solid rgba(255,255,255,0.3);
+  padding-top: 12px;
+}
+
+.point-distance {
+  font-size: 15px;
+  color: white;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.route-btn {
+  padding: 8px 16px;
+  background: white;
+  color: var(--green);
+  border: none;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.route-btn:hover {
+  background: #f0f0f0;
+  transform: scale(1.05);
+}

@@ -1,1 +1,35 @@
+/**
+ * 🎨 variables.css
+ * 
+ * CSS-переменные для всего приложения
+ * Цвета, тени, отступы, шрифты
+ */
+
+:root {
+  /* 🌿 Основная цветовая палитра */
+  --bg: #f4f4ef; /* фон приложения */
+  --mint: #61cdb3; /* мята (акценты) */
+  --mint-soft: #aee8d7; /* мягкая мята */
+  --green: #0f5b4c; /* глубокий зелёный */
+  --green-deep: #0a4c3f; /* ещё глубже */
+  --text: #134f42; /* основной текст */
+  --white: #f7f7f2; /* белый для карточек */
   
+  /* 📦 Тени */
+  --shadow: 0 8px 18px rgba(12, 72, 60, 0.18);
+  
+  /* 📏 Отступы */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  
+  /* 🔤 Шрифты */
+  --font-main: Georgia, "Times New Roman", serif;
+  --font-ui: Arial, sans-serif;
+  
+  /* 📐 Размеры */
+  --border-radius-card: 28px;
+  --border-radius-btn: 50%;
+}
