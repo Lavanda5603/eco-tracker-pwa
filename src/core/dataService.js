@@ -14,9 +14,9 @@ function getToday() {
 // Начальное состояние
 const INITIAL_STATE = {
   user: {
-    name: 'Иван Петров',
-    email: 'ivan@example.com',
-    city: 'Санкт-Петербург',
+    name: 'Юля',
+    email: '16122006ys@mail.ru',
+    city: 'Екатеринбург',
     birthdate: '1990-03-30',
     avatar: null,
     joinDate: getToday(),
@@ -40,10 +40,10 @@ const INITIAL_STATE = {
   ],
   
   leaderboard: [
-    { name: 'Анна', points: 2850, avatar: '👩' },
-    { name: 'Пётр', points: 2410, avatar: '👨' },
+    { name: 'Анна', points: 2850, avatar: '👤' },
+    { name: 'Пётр', points: 2410, avatar: '👤' },
     { name: 'Вы', points: 0, avatar: '👤', isCurrentUser: true },
-    { name: 'Мария', points: 1100, avatar: '👩' }
+    { name: 'Мария', points: 1100, avatar: '👤' }
   ]
 };
 
@@ -202,4 +202,56 @@ export function updateProfile(data) {
 export function updateAvatar(avatar) {
   appState.user.avatar = avatar;
   persist();
+}
+
+// Очистить всю историю действий
+export function clearHistory() {
+  // Очищаю действия
+  appState.actions = [];
+  
+  // Сбрасываю статистику по категориям
+  appState.statsByCategory = {};
+  
+  // Сбрасываю достижения
+  appState.achievements = INITIAL_STATE.achievements.map(ach => ({ ...ach }));
+  
+  // Сбрасываю баллы пользователя
+  appState.user.totalPoints = 0;
+  appState.user.co2Saved = 0;
+  appState.user.level = 1;
+  
+  // Сохраняю изменения
+  persist();
+  
+  console.log('History cleared');
+}
+
+// Удалить действие по id
+export function deleteAction(actionId) {
+  // Нахожу действие
+  const action = appState.actions.find(a => a.id === actionId);
+  if (!action) return false;
+  
+  // Отнимаю баллы
+  appState.user.totalPoints -= action.points || 0;
+  appState.user.co2Saved -= action.co2 || 0;
+  
+  // Удаляю действие из массива
+  appState.actions = appState.actions.filter(a => a.id !== actionId);
+  
+  // Обновляю статистику по категориям
+  if (action.category) {
+    const oldAmount = appState.statsByCategory?.[action.category] || 0;
+    const newAmount = Math.max(0, oldAmount - (action.amount || 0));
+    appState.statsByCategory[action.category] = newAmount;
+  }
+  
+  // Обновляю уровень
+  updateLevel();
+  
+  // Сохраняю
+  persist();
+  
+  console.log(`🗑️ Action ${actionId} deleted`);
+  return true;
 }

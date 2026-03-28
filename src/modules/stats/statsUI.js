@@ -141,10 +141,24 @@ export function renderStatsUI() {
           </div>
         `).join('')}
       </div>
+
+      <!-- Кнопка очистки истории -->
+      <button id="clear-history-btn" class="clear-history-btn">Очистить историю</button>
     </div>
   `;
 
   document.querySelector('.back-btn').addEventListener('click', () => navigate('/'));
+  
+  // Обработчик кнопки очистки
+  document.getElementById('clear-history-btn').addEventListener('click', async () => {
+    if (confirm('Вы уверены, что хотите очистить всю историю действий? Это действие нельзя отменить.')) {
+      // Импортирую функцию очистки из dataService
+      const { clearHistory } = await import('../../core/dataService.js');
+      clearHistory();
+      // Перерисовываю страницу
+      renderStatsUI();
+    }
+  });
 }
 
 function getNextLevelPoints(level) {

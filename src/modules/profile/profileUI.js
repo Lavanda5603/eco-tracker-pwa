@@ -15,6 +15,7 @@
 import { getMainContainer } from "../../core/uiContainer.js";
 import { getUserData, updateProfile, updateAvatar } from "../../core/dataService.js";
 import { navigate } from "../../core/router.js";
+import { getSession, logout as authLogout } from "../../core/authService.js";
 
 // Состояние темы
 let isDarkTheme = localStorage.getItem('theme') === 'dark';
@@ -24,6 +25,10 @@ export function renderProfileUI() {
   if (!container) return;
 
   const user = getUserData();
+  
+  // Получаю email из сессии Supabase
+  const session = getSession();
+  const userEmail = session?.user?.email || user.email;
 
   container.innerHTML = `
     <div class="profile-container">
@@ -59,7 +64,7 @@ export function renderProfileUI() {
           <span class="data-icon">
             <img src="/public/icons/profile/email.png" alt="email" style="width: 28px; height: 24px;">
           </span>
-          <input type="email" class="data-input" id="emailInput" value="${user.email}" placeholder="Email">
+          <input type="email" class="data-input" id="emailInput" value="${userEmail}" placeholder="Email">
         </div>
         <div class="data-item">
           <span class="data-icon">
@@ -136,6 +141,13 @@ export function renderProfileUI() {
         <span>О приложении</span>
         <span>→</span>
       </button>
+
+      <!-- Монетизация -->
+      <button class="menu-item donate" id="donateBtn">
+        <span>Поддержать проект</span>
+        <span>→</span>
+      </button>
+
       <button class="menu-item logout" id="logoutBtn">
         <span>Выйти</span>
         <span>→</span>
@@ -243,10 +255,25 @@ export function renderProfileUI() {
   // Выход
   document.getElementById('logoutBtn').addEventListener('click', () => {
     if (confirm('Выйти из профиля? Все данные сохранятся.')) {
+      // Очищаю все данные
       localStorage.removeItem('eco_tracker_app');
-      location.reload();
+      localStorage.removeItem('supabase_session');
+      localStorage.removeItem('theme');
+      localStorage.removeItem('notifications');
+      localStorage.removeItem('geolocation');
+      localStorage.removeItem('offline');
+      // Перезагружаю страницу
+      window.location.href = '/auth';
     }
   });
+  
+  // Поддержка проекта
+  const donateBtn = document.getElementById('donateBtn');
+  if (donateBtn) {
+    donateBtn.addEventListener('click', () => {
+      window.open('https://t.me/yegaaaaaaa', '_blank');
+    });
+  }
 }
 
 function formatDate(dateStr) {

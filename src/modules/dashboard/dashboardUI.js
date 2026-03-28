@@ -103,12 +103,15 @@ export function renderDashboardUI() {
             }
 
             return `
-              <li>
+              <li data-action-id="${action.id}">
                 <span class="action-item">
                   ${iconPath ? `<img src="${iconPath}" alt="action" class="action-icon">` : ''}
                   ${action.action}
                 </span>
-                <strong class="action-points">+${action.points || 0}</strong>
+                <div class="action-right">
+                  <strong class="action-points">+${action.points || 0}</strong>
+                  <button class="delete-action-btn" data-id="${action.id}" title="Удалить">✕</button>
+                </div>
               </li>
             `;
           }).join('')}
@@ -148,10 +151,88 @@ export function renderDashboardUI() {
           ).join('')}
         </div>
       </div>
+      <!-- Маскот -->
+      <div class="mascot-card">
+        <div class="mascot-avatar" id="mascotAvatar">🦊</div>
+        <div class="mascot-message" id="mascotMessage">
+          Привет! Сдавай отходы и получай баллы! 🌱
+        </div>
+      </div>
     </div>
   `;
 
   document.getElementById('profileBtn').addEventListener('click', () => navigate('/profile'));
-  document.getElementById('notifyBtn').addEventListener('click', () => alert('🔔 Уведомления в разработке'));
+  document.getElementById('notifyBtn').addEventListener('click', () => {
+  // Проверяю поддержку уведомлений
+  if ('Notification' in window) {
+    // Проверяю разрешение
+    if (Notification.permission === 'granted') {
+      // Показываю уведомление
+      new Notification('🌱 Eco Tracker', {
+        body: 'Не забудьте сегодня сдать отходы и получить баллы!',
+        icon: '/icons/icon-192.png'
+      });
+    } else if (Notification.permission !== 'denied') {
+      // Спрашиваю разрешение
+      Notification.requestPermission().then(permission => {
+        if (permission === 'granted') {
+          new Notification('🌱 Eco Tracker', {
+            body: 'Уведомления включены! Теперь вы будете получать напоминания.',
+            icon: '/icons/icon-192.png'
+          });
+        }
+      });
+    } else {
+      // Если пользователь запретил уведомления
+      alert('Уведомления отключены. Вы можете включить их в настройках браузера.');
+    }
+  } else {
+    alert('Ваш браузер не поддерживает уведомления');
+  }
+});
   document.getElementById('toStatsBtn').addEventListener('click', () => navigate('/stats'));
+
+  // Удаление действия
+  document.querySelectorAll('.delete-action-btn').forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+      e.stopPropagation();
+      const actionId = Number(btn.dataset.id);
+      
+      if (confirm('Удалить это действие? Баллы будут отозваны.')) {
+        const { deleteAction } = await import('../../core/dataService.js');
+        deleteAction(actionId);
+        // Перерисовываю главную
+        renderDashboardUI();
+      }
+    });
+  });
+  // Маскот
+  function updateMascot() {
+    const mascotAvatar = document.getElementById('mascotAvatar');
+    const mascotMessage = document.getElementById('mascotMessage');
+    
+    const points = data.user.totalPoints;
+    const streak = data.user.streakDays;
+    const todayActions = data.todayActions.length;
+    
+    // Меняю эмоцию и сообщение в зависимости от активности
+    if (todayActions > 0) {
+      mascotAvatar.textContent = '✴︎';
+      mascotMessage.textContent = `Отлично! Сегодня +${todayActions} действий! Так держать! ♡`;
+    } else if (streak > 0 && points > 0) {
+      mascotAvatar.textContent = '☘︎';
+      mascotMessage.textContent = `У тебя уже ${streak} дней подряд! Ты крут! ☆`;
+    } else if (points === 0) {
+      mascotAvatar.textContent = '☘︎';
+      mascotMessage.textContent = 'Попробуй сдать что-нибудь в сортировке! Это легко и полезно! ☼';
+    } else if (streak === 0 && points > 0) {
+      mascotAvatar.textContent = '❄︎';
+      mascotMessage.textContent = 'Давно не заходил... Возвращайся почаще! ❀';
+    } else {
+      mascotAvatar.textContent = '𓃠';
+      mascotMessage.textContent = 'Привет! Сдавай отходы и получай баллы! ✧';
+    }
+  }
+
+  updateMascot();
 }

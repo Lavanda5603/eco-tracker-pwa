@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: eco-tracker-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    environment:
+      - NODE_ENV=production
+      - API_URL=http://backend:4000/api
+    networks:
+      - eco-network
+
+  backend:
+    image: node:20-alpine
+    container_name: eco-tracker-backend
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: sh -c "npm install && node server/server.js"
+    ports:
+      - "4000:4000"
+    env_file:
+      - .env
+    networks:
+      - eco-network
+
+networks:
+  eco-network:
+    driver: bridge

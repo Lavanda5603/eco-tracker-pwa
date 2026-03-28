@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: eco-tracker-frontend
+    runtime: image
+    repo: https://github.com/Lavanda5603/eco-tracker-pwa
+    branch: main
+    dockerfilePath: ./docker/Dockerfile
+    dockerContext: .
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: API_URL
+        value: https://eco-tracker-backend.onrender.com/api
+    healthCheckPath: /
+    autoDeploy: true
+    
+  - type: web
+    name: eco-tracker-backend
+    runtime: node
+    repo: https://github.com/Lavanda5603/eco-tracker-pwa
+    branch: main
+    buildCommand: npm install
+    startCommand: node server/server.js
+    envVars:
+      - key: PORT
+        value: 4000
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_ANON_KEY
+        sync: false
+    healthCheckPath: /api
+    autoDeploy: true

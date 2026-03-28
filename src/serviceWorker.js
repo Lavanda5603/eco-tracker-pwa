@@ -3,9 +3,9 @@
  * Офлайн режим и кэширование
  */
 
-const CACHE_NAME = 'eco-tracker-v3';
+const CACHE_NAME = 'eco-tracker-v4'; // увеличила версию для обновления кэша
 
-const ASSETS_TO_CACHE = [
+const STATIC_ASSETS = [
   '/',
   '/index.html',
   '/offline.html',
@@ -25,38 +25,54 @@ const ASSETS_TO_CACHE = [
   '/src/core/authService.js'
 ];
 
+// Установка — кэширую статику
 self.addEventListener('install', (event) => {
+  console.log('🔄 Service Worker installing...');
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(ASSETS_TO_CACHE))
+      .then(cache => cache.addAll(STATIC_ASSETS))
       .then(() => self.skipWaiting())
   );
 });
 
+// Активация — удаляю старые кэши
 self.addEventListener('activate', (event) => {
+  console.log('🔄 Service Worker activating...');
   event.waitUntil(
     caches.keys().then(keys => 
       Promise.all(
         keys.filter(key => key !== CACHE_NAME)
-          .map(key => caches.delete(key))
+          .map(key => {
+            console.log('🗑️ Removing old cache:', key);
+            return caches.delete(key);
+          })
       )
     ).then(() => self.clients.claim())
   );
 });
 
+// Перехват запросов
 self.addEventListener('fetch', (event) => {
-  if (event.request.url.includes('/analytics') || 
-      event.request.url.includes('/api')) {
+  // Не кэширую запросы к API
+  if (event.request.url.includes('/api')) {
+    return;
+  }
+  
+  // Не кэширую аналитику
+  if (event.request.url.includes('/analytics')) {
     return;
   }
 
   event.respondWith(
     caches.match(event.request)
       .then(cached => {
-        if (cached) return cached;
+        if (cached) {
+          return cached;
+        }
         
         return fetch(event.request)
           .then(response => {
+            // Кэширую только успешные ответы
             if (response && response.status === 200) {
               const responseToCache = response.clone();
               caches.open(CACHE_NAME)
@@ -65,9 +81,12 @@ self.addEventListener('fetch', (event) => {
             return response;
           })
           .catch(() => {
+            // Если нет сети и это запрос страницы — показываю offline.html
             if (event.request.mode === 'navigate') {
               return caches.match('/offline.html');
             }
+            // Для запросов модулей — возвращаю ошибку
+            return new Response('Network error', { status: 408 });
           });
       })
   );

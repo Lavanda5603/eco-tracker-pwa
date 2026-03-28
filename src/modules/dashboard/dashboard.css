@@ -357,3 +357,85 @@ body.dark-theme .badges .locked {
   color: #666;
   border-color: #555;
 }
+
+/* Кнопка удаления действия */
+.action-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.delete-action-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 20px;
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-action-btn:hover {
+  background: var(--green);
+  transform: scale(1.1);
+}
+
+/* Темная тема для кнопки удаления */
+body.dark-theme .delete-action-btn {
+  background: rgba(100, 100, 100, 0.5);
+}
+
+body.dark-theme .delete-action-btn:hover {
+  background: var(--green);
+}
+
+/* Маскот */
+.mascot-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: linear-gradient(135deg, #57bda4, var(--green));
+  border-radius: 40px;
+  padding: 16px 20px;
+  margin: 20px 0;
+  box-shadow: var(--shadow);
+  transition: all 0.3s;
+}
+
+.mascot-card:hover {
+  transform: translateY(-3px);
+}
+
+.mascot-avatar {
+  font-size: 48px;
+  background: rgba(255,255,255,0.2);
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+
+.mascot-avatar:hover {
+  transform: scale(1.1);
+}
+
+.mascot-message {
+  flex: 1;
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+  line-height: 1.4;
+}
+
+/* Темная тема для маскота */
+body.dark-theme .mascot-card {
+  background: linear-gradient(135deg, #2d5a4c, #1a3a30);
+}
