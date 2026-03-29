@@ -2,28 +2,31 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-# Копирую всё
+# Копирую весь проект
 COPY . .
 
-# Устанавливаю зависимости
+# Ставлю зависимости
 RUN npm install
 
-# Устанавливаю nginx
+# Ставлю nginx
 RUN apk add --no-cache nginx
 
-# Чищу дефолт
+# Создаю папку вручную
+RUN mkdir -p /usr/share/nginx/html
+
+# Чищу
 RUN rm -rf /usr/share/nginx/html/*
 
 # Копирую фронт
-RUN cp -r public/* /usr/share/nginx/html
+RUN cp -r public/* /usr/share/nginx/html/
 RUN cp -r src /usr/share/nginx/html/src
 
-# nginx конфиг
+# Копирую nginx конфиг
 COPY nginx/nginx.conf /etc/nginx/http.d/default.conf
 
 # Порты
 EXPOSE 3000
 EXPOSE 4000
 
-# Запускаем и сервер, и nginx
+# Запускаю сервер + nginx
 CMD node server/server.js & nginx -g 'daemon off;'
