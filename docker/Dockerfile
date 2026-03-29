@@ -29,4 +29,4 @@ EXPOSE 3000
 EXPOSE 4000
 
 # Запускаю сервер + nginx
-CMD node server/server.js & nginx -g 'daemon off;'
+CMD sh -c "node server/server.js & nginx -g 'daemon off;'"
