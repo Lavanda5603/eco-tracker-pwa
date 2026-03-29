@@ -3,7 +3,7 @@
  * Фронтенд для работы с сервером авторизации
  */
 
-const API_URL = "https://symmetrical-space-guacamole-97g776jxqg6qc7jwx-4000.app.github.dev/api";
+const API_URL = "/api";
 
 // Регистрация пользователя
 export async function registerUser(email, password) {
