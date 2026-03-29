@@ -1,32 +1,18 @@
-FROM node:18-alpine
+# Использую лёгкий nginx
+FROM nginx:alpine
 
-WORKDIR /app
-
-# Копирую весь проект
-COPY . .
-
-# Ставлю зависимости
-RUN npm install
-
-# Ставлю nginx
-RUN apk add --no-cache nginx
-
-# Создаю папку вручную
-RUN mkdir -p /usr/share/nginx/html
-
-# Чищу
+# Удаляю стандартный контент nginx
 RUN rm -rf /usr/share/nginx/html/*
 
-# Копирую фронт
-RUN cp -r public/* /usr/share/nginx/html/
-RUN cp -r src /usr/share/nginx/html/src
+# Копирую файлы из корня проекта (т.к. Dockerfile в /docker/)
+COPY ../public /usr/share/nginx/html
+COPY ../src /usr/share/nginx/html/src
 
-# Копирую nginx конфиг
-COPY nginx/nginx.conf /etc/nginx/http.d/default.conf
+# Копирую конфиг nginx
+COPY ../nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
-# Порты
+# Экспонирую порт
 EXPOSE 3000
-EXPOSE 4000
 
-# Запускаю сервер + nginx
-CMD sh -c "node server/server.js & nginx -g 'daemon off;'"
+# Запуск nginx
+CMD ["nginx", "-g", "daemon off;"]
