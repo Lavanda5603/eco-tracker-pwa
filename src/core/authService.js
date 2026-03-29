@@ -3,7 +3,7 @@
  * Фронтенд для работы с сервером авторизации
  */
 
-const API_URL = "/api";
+const API_URL = "https://eco2-eib8.onrender.com/api";
 
 // Регистрация пользователя
 export async function registerUser(email, password) {
