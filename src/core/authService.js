@@ -3,7 +3,27 @@
  * Фронтенд для работы с сервером авторизации
  */
 
-const API_URL = "https://symmetrical-space-guacamole-97g776jxqg6qc7jwx-4000.app.github.dev/api";
+// Определяю URL бэкенда в зависимости от окружения
+const getApiUrl = () => {
+  // Если мы на Render (фронтенд на render.com)
+  if (window.location.hostname.includes('render.com')) {
+    return 'https://eco-tracker-backend.onrender.com/api';
+  }
+  
+  // Если в разработке (локально или Codespaces)
+  if (window.location.hostname.includes('github.dev')) {
+    // Для Codespaces - порт 4000
+    const codespaceUrl = window.location.origin.replace('-8080', '-4000');
+    return `${codespaceUrl}/api`;
+  }
+  
+  // Локальная разработка
+  return 'http://localhost:4000/api';
+};
+
+const API_URL = getApiUrl();
+
+console.log('📡 Using API URL:', API_URL);
 
 // Регистрация пользователя
 export async function registerUser(email, password) {
