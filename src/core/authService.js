@@ -7,7 +7,7 @@
 const getApiUrl = () => {
   // Если мы на Render (фронтенд на render.com)
   if (window.location.hostname.includes('render.com')) {
-    return 'https://eco-tracker-backend.onrender.com/api';
+    return 'https://eco-tracker-backend-gqwe.onrender.com/api';
   }
   
   // Если в разработке (локально или Codespaces)
