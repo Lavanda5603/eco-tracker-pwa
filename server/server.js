@@ -21,12 +21,13 @@ app.use((req, res, next) => {
   
   // Список разрешённых доменов
   const allowedOrigins = [
-    'https://eco-tracker-pwa.onrender.com', // Фронтенд на Render
-    'https://symmetrical-space-guacamole-97g776jxqg6qc7jwx-8080.app.github.dev', // Codespaces
-    'http://localhost:3000', // Локальный Docker
-    'http://localhost:8080', // Локальный serve
-    'http://127.0.0.1:5500', // Локальный Live Server
-    'https://symmetrical-space-guacamole-97g776jxqg6qc7jwx-5500.app.github.dev' // GitHub Codespaces альт
+    'https://eco-tracker-frontend.onrender.com',
+    'https://eco-tracker-pwa.onrender.com',
+    'https://symmetrical-space-guacamole-97g776jxqg6qc7jwx-8080.app.github.dev',
+    'http://localhost:3000',
+    'http://localhost:8080',
+    'http://127.0.0.1:5500',
+    'https://symmetrical-space-guacamole-97g776jxqg6qc7jwx-5500.app.github.dev'
   ];
   
   // Проверяю, разрешён ли origin

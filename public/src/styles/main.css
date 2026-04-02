@@ -1,0 +1,190 @@
+/**
+ * 🎨 main.css
+ * Глобальные стили
+ */
+
+@import './variables.css';
+@import './reset.css';
+
+/* Контейнер приложения */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-width: 480px;
+  margin: 0 auto;
+  background: var(--bg);
+  position: relative;
+}
+
+/* Основной контент (скроллится) */
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 16px 20px 16px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--mint) var(--bg);
+}
+
+.main-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.main-content::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+.main-content::-webkit-scrollbar-thumb {
+  background: var(--mint);
+  border-radius: 3px;
+}
+
+/* Нижняя навигация (всегда внизу) */
+.bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #f2f2ec;
+  border-top: 2px solid rgba(15, 91, 76, 0.4);
+  padding: 8px 0 4px;
+  flex-shrink: 0;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #3cae94;
+  font-size: 12px;
+  transition: all 0.2s;
+  padding: 4px 8px;
+  border-radius: 20px;
+}
+
+.nav-item.active {
+  color: var(--green);
+  transform: translateY(-2px);
+}
+
+.nav-icon {
+  font-size: 24px;
+  margin-bottom: 2px;
+}
+
+.nav-label {
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* Телефонный блок (контейнер для экранов) */
+.phone-screen {
+  background: var(--bg);
+  border-radius: 24px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  border: 1px solid rgba(15, 91, 76, 0.1);
+}
+
+/* Заголовки с кнопкой назад */
+.header-with-back {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.back-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--mint-soft);
+  color: var(--green);
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+}
+
+.header-with-back h2 {
+  color: var(--green);
+  font-size: 24px;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+/* Заголовки секций */
+.section-title {
+  font-size: 18px;
+  color: var(--text);
+  margin: 20px 0 12px;
+  font-weight: 600;
+}
+
+/* Карточки */
+.card {
+  background: #57bda4;
+  border-radius: 20px;
+  padding: 16px;
+  color: white;
+  box-shadow: var(--shadow);
+  margin-bottom: 16px;
+}
+
+.dark-card {
+  background: var(--green);
+  color: white;
+}
+
+/* Кнопки */
+.btn-primary {
+  background: linear-gradient(135deg, var(--mint), var(--green));
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 14px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 100%;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+/* Индикатор дома */
+.home-indicator {
+  width: 120px;
+  height: 4px;
+  background: #111;
+  border-radius: 2px;
+  margin: 16px auto 0;
+}
+
+/* Тёмная тема для нижней панели */
+body.dark-theme .bottom-nav {
+  background: #2d2d2d;
+  border-top: 2px solid #444;
+}
+
+body.dark-theme .nav-item {
+  color: #888;
+}
+
+body.dark-theme .nav-item.active {
+  color: var(--mint);
+}
+
+body.dark-theme .nav-label {
+  color: #888;
+}
+
+body.dark-theme .nav-item.active .nav-label {
+  color: var(--mint);
+}
